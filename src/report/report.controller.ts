@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ReportService } from './report.service';
 import { CreateReportDto } from './dto/create-report.dto';
 import { UpdateReportDto } from './dto/update-report.dto';
@@ -7,9 +7,9 @@ import { UpdateReportDto } from './dto/update-report.dto';
 export class ReportController {
   constructor(private readonly reportService: ReportService) {}
 
-  @Post()
-  create(@Body() createReportDto: CreateReportDto) {
-    return this.reportService.create(createReportDto);
+  @Get('/get-sells')
+  create(createReportDto: CreateReportDto) {
+    return this.reportService.findByGiftCardSells(createReportDto);
   }
 
   @Get()
