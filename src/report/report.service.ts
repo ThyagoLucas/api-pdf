@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateReportDto } from './dto/create-report.dto';
 import { UpdateReportDto } from './dto/update-report.dto';
+import { ReportRepository } from './report.repository';
 
 @Injectable()
 export class ReportService {
-  create(createReportDto: CreateReportDto) {
-    return 'This action adds a new report';
+  constructor(private readonly reportRepository: ReportRepository) {}
+
+  findByGiftCardSells(createReportDto: CreateReportDto) {
+    return this.reportRepository.findGiftCardSells(createReportDto);
   }
 
   findAll() {
@@ -17,6 +20,7 @@ export class ReportService {
   }
 
   update(id: number, updateReportDto: UpdateReportDto) {
+    updateReportDto;
     return `This action updates a #${id} report`;
   }
 
